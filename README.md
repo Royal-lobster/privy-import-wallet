@@ -1,5 +1,3 @@
-# privy-import-wallet
-
 # Privy useImportWallet Hook Bug Reproduction
 
 This repository demonstrates a bug with the `useImportWallet` hook from `@privy-io/react-auth` that causes an "Invalid hook call" error.
