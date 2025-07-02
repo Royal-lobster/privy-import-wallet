@@ -1,4 +1,4 @@
-import { usePrivy } from "@privy-io/react-auth";
+import { usePrivy, useWallets } from "@privy-io/react-auth";
 import { toast } from "sonner";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,6 +12,10 @@ interface WalletCardProps {
 
 export function WalletCard({ generatedMnemonic, onDisconnect }: WalletCardProps) {
   const { logout, user } = usePrivy();
+  const { wallets } = useWallets();
+
+  // Find imported wallet as shown in documentation
+  const importedWallet = wallets.find((wallet) => wallet.imported);
 
   const handleDisconnect = async () => {
     try {
@@ -49,6 +53,25 @@ export function WalletCard({ generatedMnemonic, onDisconnect }: WalletCardProps)
             <div>
               <span className="font-medium">Type:</span>{" "}
               {user.wallet.walletClientType}
+            </div>
+          )}
+        </div>
+
+        {/* Add imported wallet verification as per documentation */}
+        <div className="text-sm space-y-2">
+          <div>
+            <span className="font-medium">Total Wallets:</span> {wallets.length}
+          </div>
+          <div>
+            <span className="font-medium">Imported Wallet Found:</span>{" "}
+            {importedWallet ? "✅ Yes" : "❌ No"}
+          </div>
+          {importedWallet && (
+            <div>
+              <span className="font-medium">Imported Address:</span>{" "}
+              <code className="text-xs break-all bg-muted px-2 py-1 rounded">
+                {importedWallet.address}
+              </code>
             </div>
           )}
         </div>
