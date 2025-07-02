@@ -92,7 +92,3 @@ The Privy provider is set up correctly in `src/App.tsx`:
 - `src/components/WalletCard.tsx` - Shows expected wallet verification using `useWallets`
 - `src/App.tsx` - Privy provider setup
 - `src/config/wagmi.ts` - Wagmi and Privy configuration
-
-## Expected Fix
-
-The `useImportWallet` hook should work without throwing React hook call errors when used inside a proper React function component within the Privy provider context.
